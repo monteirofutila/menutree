@@ -15,7 +15,7 @@
                                 <div class="w-full">
                                     <button
                                         class="btn bg-amber-600 px-md rounded-full outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-black antialiased text-white md:!w-auto md:px-8"
-                                        onclick="product.showModal()">
+                                        wire:click="$dispatch('product-show-modal')">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 16 16"
                                             fill="none" stroke="currentColor">
                                             <path fill-rule="evenodd" clip-rule="evenodd"
@@ -29,7 +29,7 @@
                                 <div class="w-full">
                                     <button
                                         class="btn rounded-full text-black bg-white border border-sand hover:border-chalk hover:bg-chalk active:border-chalk active:bg-chalk"
-                                        onclick="category.showModal()">
+                                        wire:click="$dispatch('category-show-modal')">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 16 16"
                                             fill="none" stroke="currentColor">
                                             <path fill-rule="evenodd" clip-rule="evenodd"
@@ -42,7 +42,9 @@
                         </div>
                     </div>
                     <div class="space-y-5">
-                        <livewire:components.cards.category-card />
+                        @foreach ($categories as $category)
+                            <livewire:components.cards.category-card :key="$category->id" :category="$category" />
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -50,6 +52,22 @@
     </main>
 
     <!-- You can open the modal using ID.showModal() method -->
-    <livewire:components.modals.category-modal />
-    <livewire:components.modals.product-modal />
+    <livewire:components.modals.category-modal key="{{ $categories->count() }}" />
+    <livewire:components.modals.product-modal key="{{ $categories->count() + 2 }}" />
+
+    <script>
+        document.addEventListener('livewire:initialized', () => {
+            Livewire.on('category-edit', (event) => {
+                document.getElementById('category').showModal()
+            });
+
+            Livewire.on('category-show-modal', (event) => {
+                document.getElementById('category').showModal()
+            });
+
+            Livewire.on('product-show-modal', (event) => {
+                document.getElementById('product').showModal()
+            });
+        });
+    </script>
 </div>

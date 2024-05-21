@@ -9,20 +9,17 @@ class AuthService
     /**
      * Create a new class instance.
      */
-    public function __construct(
-        protected Auth $auth
-    ) {
-    }
+
     public function login(string $email, string $password): bool
     {
-        return $this->auth->attempt([$email, $password]);
+        return auth()->attempt([$email, $password]);
     }
     public function me(): ?object
     {
-        return $this->auth->user();
+        return auth()->user();
     }
     public function logout(): void
     {
-        $this->auth->logout();
+        auth()->logout();
     }
 }
