@@ -5,7 +5,7 @@
             <div class="flex justify-center ">
 
                 @if ($category->products->count())
-                    <div class="carousel carousel-center rounded-box h-36">
+                    <div class="carousel rounded-box h-36">
                         @foreach ($category->products as $product)
                             <div class="carousel-item">
                                 <img src="{{ asset('storage/' . $product->photo_url) }}" alt="Burger" />

@@ -57,6 +57,14 @@ class CategoryModal extends Component
         Category::find($category_id)->update($data);
     }
 
+    #[On('category-destroy')]
+    public function destroy($category_id = null)
+    {
+        Category::find($category_id)->delete();
+        $this->dispatch('refresh-home');
+        $this->reset();
+    }
+
     public function render()
     {
         return view('livewire.components.modals.category-modal');

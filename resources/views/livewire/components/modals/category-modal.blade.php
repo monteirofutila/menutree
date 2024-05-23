@@ -56,7 +56,7 @@
                 <div class="flex gap-2">
                     <button
                         class="btn px-md rounded-full outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-black antialiased text-black bg-white border border-sand w-fit"
-                        type="button">
+                        type="button" wire:click="$dispatch('category-delete-modal')">
                         <span class="flex items-center justify-center">
                             <span class="block">
                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
@@ -70,6 +70,11 @@
                             <span class="block text-md font-semibold sr-only">Deletecollection</span>
                         </span>
                     </button>
+
+                    @if ($category)
+                        <livewire:components.modals.category-delete-modal :category_id="$category->id" />
+                    @endif
+
                     <div class="w-full">
                         <button
                             class="btn bg-amber-600 px-md rounded-full outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-black antialiased text-white md:!w-auto md:px-8"
@@ -82,3 +87,15 @@
         </div>
     </div>
 </dialog>
+
+@push('js')
+    <script>
+        document.addEventListener('livewire:initialized', () => {
+
+            Livewire.on('category-delete-modal', (event) => {
+                document.getElementById('category-delete').showModal()
+            });
+
+        });
+    </script>
+@endpush
