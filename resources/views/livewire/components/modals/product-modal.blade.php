@@ -5,66 +5,101 @@
             <button class="btn btn-sm btn-circle bg-white text-sm absolute right-2 top-2">✕</button>
         </form>
         <div class="mt-10">
-            <form class="transition">
-                <div class="pt-4">
+            <div class="pt-4">
+                <div class="text-center">
+                    @error('photo')
+                        <span class="error">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div
+                    class="relative m-auto mb-4 flex aspect-[1/1.2] w-40 cursor-pointer items-center justify-center rounded-[30px] bg-marble hover:ring-2 hover:ring-sand">
+                    <button wire:click="$dispatch('image-preview')"
+                        class="relative flex h-full w-full grow items-center">
+                        <input id="uploadInput" wire:model="photo" type="file" class="hidden" accept="image/*" />
+                        <img class="absolute inset-x-0 inset-y-0 h-full w-full rounded-[30px] object-cover"
+                            src="{{ $photo ? $photo->temporaryUrl() : 'http://placehold.it/100x100' }}" alt="">
+                    </button>
                     <div
-                        class="relative m-auto mb-4 flex aspect-[1/1.2] w-40 cursor-pointer items-center justify-center rounded bg-marble hover:ring-2 hover:ring-sand">
-                        <button type="button" class="relative flex h-full w-full grow items-center"><img
-                                class="absolute inset-x-0 inset-y-0 h-full w-full rounded object-cover"
-                                src="https://ugc.production.linktr.ee/72878c2e-f33a-4746-b71c-979ec0ded48e_442272662-2796424877163060-5458440463016674111-n.jpeg?io=true&amp;size=square-fit"
-                                alt=""></button>
-                        <div
-                            class="pointer-events-none absolute bottom-2 right-2 z-10 flex h-10 w-10 items-center justify-center rounded-md border border-solid bg-black/30 text-white backdrop-blur-sm">
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                xmlns="http://www.w3.org/2000/svg" class=" " role="img" aria-hidden="false"
-                                aria-labelledby="ltclid206_title ">
-                                <title id="ltclid206_title">Edit</title>
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M2 14V11.7071L9.5 4.20708L11.7929 6.49998L4.29289 14H2ZM12.5 5.79287L13.7929 4.49998L11.5 2.20708L10.2071 3.49998L12.5 5.79287ZM11.1464 1.14642L1.14645 11.1464L1 11.5V14.5L1.5 15H4.5L4.85355 14.8535L14.8536 4.85353V4.14642L11.8536 1.14642H11.1464Z"
-                                    fill="currentColor"></path>
-                            </svg>
+                        class="pointer-events-none absolute bottom-2 right-2 z-10 flex h-10 w-10 items-center justify-center rounded-full border border-solid bg-black/30 text-white backdrop-blur-sm">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                            xmlns="http://www.w3.org/2000/svg" class=" " role="img" aria-hidden="false"
+                            aria-labelledby="ltclid206_title ">
+                            <title id="ltclid206_title">Edit</title>
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M2 14V11.7071L9.5 4.20708L11.7929 6.49998L4.29289 14H2ZM12.5 5.79287L13.7929 4.49998L11.5 2.20708L10.2071 3.49998L12.5 5.79287ZM11.1464 1.14642L1.14645 11.1464L1 11.5V14.5L1.5 15H4.5L4.85355 14.8535L14.8536 4.85353V4.14642L11.8536 1.14642H11.1464Z"
+                                fill="currentColor"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="space-y-8">
+                    <div class="space-y-2">
+                        <div class="mb-2">
+                            <input type="text" placeholder="Nome do produto" wire:model="name"
+                                class="input input-bordered w-full" />
+                            <div>
+                                @error('name')
+                                    <span class="error">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="mb-2">
+                            <input type="text" placeholder="Descrição" wire:model="description"
+                                class="input input-bordered w-full" />
+                            <div>
+                                @error('description')
+                                    <span class="error">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="mb-0">
+                            <input type="number" wire:model.number="price" placeholder="Preço"
+                                class="input input-bordered">
+                            <div>
+                                @error('price')
+                                    <span class="error">{{ $message }}</span>
+                                @enderror
+                            </div>
                         </div>
                     </div>
-                    <div class="space-y-8">
-                        <div class="space-y-2">
-                            <input type="text" placeholder="Nome da categoria" class="input input-bordered w-full" />
-                            <input type="text" placeholder="Nome da categoria" class="input input-bordered w-full" />
-                            <input min="0.00" step="0.01" type="number" placeholder="Price (optional)"
-                                class="input input-bordered" value="10">
+                    <label class="group w-fit flex justify-center gap-3 align-center text-sm cursor-pointer">
+                        <input type="checkbox" wire:model="is_stock" class="toggle" />
+                        <span class="text-black ml-md self-center">Está em estoque?</span>
+                        <div>
+                            @error('is_stock')
+                                <span class="error">{{ $message }}</span>
+                            @enderror
                         </div>
-                        <label class="group w-fit flex justify-center gap-3 align-center text-sm cursor-pointer">
-                            <input type="checkbox" class="toggle" checked />
-                            <span class="text-black ml-md self-center">Visible on store</span>
-                        </label>
-                        <div class="space-y-4">
-                            <h2 class="text-black text-md font-semibold leading-heading mb-2">Collection
-                                (optional)
-                            </h2>
-                            <div class="flex flex-col gap-4">
-                                <label
+                    </label>
+                    <div class="space-y-4">
+                        <h2 class="text-black text-md font-semibold leading-heading mb-2">Selecione categoria</h2>
+                        <div class="flex flex-col gap-4">
+                            @foreach (auth()->user()->categories as $value)
+                                <label for="{{ $value->id }}"
                                     class="group w-fit flex justify-center gap-3 align-center text-sm cursor-pointer">
-                                    <input type="checkbox" class="checkbox" />
-                                    <span class="text-black">New Collection</span>
+                                    <input type="radio" wire:model="category_id" value="{{ $value->id }}"
+                                        class="radio" />
+                                    <span class="text-black">{{ $value->name }}</span>
                                 </label>
-                                <label
-                                    class="group w-fit flex justify-center gap-3 align-center text-sm cursor-pointer">
-                                    <input type="checkbox" class="checkbox" />
-                                    <span class="text-black">New Collection</span>
-                                </label>
+                            @endforeach
+                            <div>
+                                @error('category_id')
+                                    <span class="error">{{ $message }}</span>
+                                @enderror
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="modal-action">
-                    <div class="mt-4 flex gap-2">
-                        <div class="w-full">
-                            <button
-                                class="btn btn-block bg-amber-600 w-full px-md rounded-full outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-black antialiased text-white md:!w-auto md:px-8"
-                                type="submit">
-                                <span class="text-base">Save changes</span>
-                            </button>
-                        </div>
-                        <div>
+            </div>
+            <div class="modal-action">
+                <div class="mt-4 flex gap-2">
+                    <div class="w-full">
+                        <button
+                            class="btn btn-block bg-amber-600 w-full px-md rounded-full outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-black antialiased text-white"
+                            wire:click="store">
+                            <span class="text-base">Adicionar produto</span>
+                        </button>
+                    </div>
+                    {{-- <div>
                             <button
                                 class="btn px-md rounded-full outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-black antialiased text-black bg-white border border-sand w-fit"
                                 type="button"><span class="flex items-center justify-center"><span class="block"><svg
@@ -77,11 +112,20 @@
                                         </svg></span><span class="block text-md font-semibold sr-only">Delete
                                         collection</span></span>
                             </button>
-                        </div>
-                    </div>
+                        </div> --}}
                 </div>
-            </form>
-
+            </div>
         </div>
     </div>
+
+    @push('js')
+        <script>
+            document.addEventListener('livewire:initialized', () => {
+                Livewire.on('image-preview', (event) => {
+                    document.getElementById('uploadInput').click()
+                });
+            });
+        </script>
+    @endpush
+
 </dialog>

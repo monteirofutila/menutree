@@ -2,24 +2,33 @@
 
 namespace App\Livewire;
 
-use App\Http\Services\CategoryService;
-use App\Models\Category;
+use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
 class Home extends Component
 {
     public $categories;
+    public $products;
 
     public function mount()
     {
-        $this->categories = Category::all();
+        $this->categories = auth()->user()->categories;
+        $this->products = DB::table('products')
+            ->join('categories', 'products.category_id', '=', 'categories.id')
+            ->where('categories.user_id', auth()->user()->id)
+            ->get();
     }
 
     #[On('refresh-home')]
     public function refreshHome()
     {
-        $this->categories = Category::all();
+        $this->reset();
+        $this->categories = auth()->user()->categories;
+        $this->products = DB::table('products')
+            ->join('categories', 'products.category_id', '=', 'categories.id')
+            ->where('categories.user_id', auth()->user()->id)
+            ->get();
     }
     public function render()
     {

@@ -10,7 +10,7 @@
                     <p class="text-concrete text-md text-center">Faça login no seu Menutree</p>
                 </div>
                 <form wire:submit="login">
-                    <div class="w-full mb-3">
+                    <div class="w-full mb-2">
                         <input type="text" placeholder="Email" wire:model="email"
                             class="input input-bordered w-full" />
                         <div>
@@ -19,7 +19,7 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="w-full mb-3">
+                    <div class="w-full mb-2">
                         <input type="password" placeholder="Senha" wire:model="password"
                             class="input input-bordered w-full" />
                         <div>
@@ -36,7 +36,7 @@
                     </div>
                     <div class="w-full mt-6 text-center">
                         <p class="text-concrete text-md">Não tem uma conta?
-                            <a href="#"
+                            <a href="{{ route('register') }}" wire:navigate
                                 class="undefined text-sm text-primary inline-flex focus-visible:outline focus-visible:outline-2 focus-visible:outline-black focus-visible:outline-offset-2 underline">Inscreve-se</a>
                         </p>
                     </div>

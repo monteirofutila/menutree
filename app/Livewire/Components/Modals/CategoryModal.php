@@ -3,7 +3,6 @@
 namespace App\Livewire\Components\Modals;
 
 use App\Models\Category;
-use App\Models\User;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -12,25 +11,37 @@ class CategoryModal extends Component
 {
     public $category;
 
-    #[Validate('required')]
+    #[Validate('required|string')]
     public string $name = '';
-    #[Validate('nullable')]
+    #[Validate('nullable|string')]
     public string $description = '';
 
-    public function store()
+    public function save()
     {
         $this->validate();
 
-        Category::create([
-            'user_id' => User::first()->id,
-            'name' => $this->name,
-            'description' => $this->description
-        ]);
+        if ($this->category) {
+            $this->update($this->category->id);
+        } else {
+            $this->store();
+        }
 
         $this->dispatch('refresh-home');
-
+        $this->dispatch('category-close-modal');
         $this->reset();
+    }
 
+    public function store()
+    {
+        $data = $this->only('name', 'description');
+        $data['user_id'] = auth()->user()->id;
+        Category::create($data);
+    }
+
+    #[On('refresh-category-modal')]
+    public function refreshCategoryModal()
+    {
+        $this->category = Category::findOrfail($this->category->id);
     }
 
     #[On('category-edit')]
@@ -40,14 +51,10 @@ class CategoryModal extends Component
         $this->name = $this->category->name;
     }
 
-    public function update()
+    public function update($category_id)
     {
-        $validated = $this->validate();
-
-        $category = Category::findOrFail($this->product->id);
-        $category->update($validated);
-
-        $this->dispatch('refresh-home');
+        $data = $this->only('name', 'description');
+        Category::find($category_id)->update($data);
     }
 
     public function render()

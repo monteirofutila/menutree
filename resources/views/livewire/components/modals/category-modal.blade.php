@@ -1,5 +1,4 @@
 {{-- The Master doesn't talk, he acts. --}}
-<!-- You can open the modal using ID.showModal() method -->
 <dialog wire:ignore.self id="category" class="modal" role="dialog">
     <div class="modal-box w-11/12 max-w-4xl">
         <form method="dialog" class="modal-backdrop">
@@ -25,18 +24,33 @@
                             <path fill-rule="evenodd" clip-rule="evenodd"
                                 d="M7.5 8.5V16H8.5V8.5H16V7.5H8.5V0H7.5V7.5H0V8.5H7.5Z"></path>
                         </svg>
-                        <span class="text-base">Add
-                            products</span>
+                        <span class="text-base">Adicionar produtos</span>
                     </button>
                 </div>
-                <div class="relative h-72 w-72">
-                    <div
-                        class="absolute -top-[16px] left-8 h-8 w-8 origin-center rotate-45 rounded-tl-[8px] border-l-[2px] border-t-[2px] border-dashed border-sand bg-white">
+
+                @if ($category->products->count())
+                    <div class="w-full">
+                        <div class="max-w-full">
+                            <h2 class="font-semibold text-black text-md leading-heading">Produtos
+                                ({{ $category->products->count() }})</h2>
+                        </div>
+                        <div class="grid grid-cols-4 gap-4 py-3">
+                            @foreach ($category->products as $product)
+                                <livewire:components.cards.product-card :key="$product->id" :product="$product" />
+                            @endforeach
+                        </div>
                     </div>
-                    <div
-                        class="flex h-72 w-72 max-w-full items-center justify-center rounded-[8px] border-[2px] border-dashed border-sand p-4 text-sm font-semibold text-concrete">
-                        Add Products and Content</div>
-                </div>
+                @else
+                    <div class="relative h-72 w-72">
+                        <div
+                            class="absolute -top-[16px] left-8 h-8 w-8 origin-center rotate-45 rounded-tl-[8px] border-l-[2px] border-t-[2px] border-dashed border-sand bg-white">
+                        </div>
+                        <div
+                            class="flex h-72 w-72 max-w-full items-center justify-center rounded-[8px] border-[2px] border-dashed border-sand p-4 text-sm font-semibold text-concrete">
+                            Adicione produtos e conteúdo</div>
+                    </div>
+                @endif
+
             @endif
             <div class="modal-action">
                 <div class="flex gap-2">
@@ -59,7 +73,7 @@
                     <div class="w-full">
                         <button
                             class="btn bg-amber-600 px-md rounded-full outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-black antialiased text-white md:!w-auto md:px-8"
-                            wire:click="store">
+                            wire:click="save">
                             <span class="text-base">Done</span>
                         </button>
                     </div>
