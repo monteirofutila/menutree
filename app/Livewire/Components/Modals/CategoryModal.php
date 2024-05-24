@@ -3,6 +3,7 @@
 namespace App\Livewire\Components\Modals;
 
 use App\Models\Category;
+use App\Models\Product;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -10,6 +11,7 @@ use Livewire\Component;
 class CategoryModal extends Component
 {
     public $category;
+    public string $product_id;
 
     #[Validate('required|string')]
     public string $name = '';
@@ -63,6 +65,21 @@ class CategoryModal extends Component
         Category::find($category_id)->delete();
         $this->dispatch('refresh-home');
         $this->reset();
+    }
+
+    #[On('confirm-deletion')]
+    public function confirmDeletion($product_id)
+    {
+        $this->product_id = $product_id;
+    }
+
+    #[On('product-destroy')]
+    public function destroyProduct()
+    {
+        Product::find($this->product_id)->delete();
+        $this->refreshCategoryModal();
+        $this->dispatch('refresh-home');
+        $this->reset('product_id');
     }
 
     public function render()

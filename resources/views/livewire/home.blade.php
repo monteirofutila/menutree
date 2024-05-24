@@ -46,7 +46,7 @@
                             @endif
                             <div class="xs:mb-0 md:!w-auto">
                                 <button
-                                    class="btn px-md rounded-full text-black bg-white border border-sand hover:border-chalk hover:bg-chalk active:border-chalk active:bg-chalk"
+                                    class="btn px-md rounded-full text-black bg-white border border-sand hover:border-chalk hover:bg-chalk active:border-chalk active:bg-chalk md:!w-auto md:px-8"
                                     wire:click="$dispatch('category-show-modal')">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 16 16"
                                         fill="none" stroke="currentColor">

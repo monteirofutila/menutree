@@ -2,10 +2,12 @@
 
 namespace App\Livewire\Components\Modals;
 
+use Livewire\Attributes\Reactive;
 use Livewire\Component;
 
 class CategoryDeleteModal extends Component
 {
+    #[Reactive()]
     public $category_id;
     public function mount($category_id)
     {
