@@ -1,5 +1,5 @@
 {{-- In work, do what you enjoy. --}}
-<main class="container px-5 mx-auto h-screen flex items-center">
+<main class="container px-5 mx-auto h-screen flex items-center bg-white">
     <div class="w-full py-11">
         <div class="max-w-xl mx-auto">
             <div class="w-full">
@@ -28,7 +28,7 @@
                         </div>
                     </div>
                     <div class="w-full mb-2">
-                        <input type="text" placeholder="Email" wire:model="email"
+                        <input type="email" placeholder="Email" wire:model="email"
                             class="input input-bordered w-full" />
                         <div>
                             @error('email')

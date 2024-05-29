@@ -1,5 +1,5 @@
 {{-- In work, do what you enjoy. --}}
-<main class="container px-5 mx-auto h-screen flex items-center">
+<main class="container px-5 mx-auto h-screen flex items-center bg-white">
     <div class="w-full py-11">
         <div class="max-w-xl mx-auto">
             <div class="w-full">
@@ -12,7 +12,7 @@
                 <form wire:submit="login">
                     <div class="w-full mb-2">
                         <input type="text" placeholder="Email" wire:model="email"
-                            class="input input-bordered w-full" />
+                            class="input input-bordered w-full bg-white" />
                         <div>
                             @error('email')
                                 <span class="error">{{ $message }}</span>
@@ -21,7 +21,7 @@
                     </div>
                     <div class="w-full mb-2">
                         <input type="password" placeholder="Senha" wire:model="password"
-                            class="input input-bordered w-full" />
+                            class="input input-bordered w-full bg-white" />
                         <div>
                             @error('password')
                                 <span class="error">{{ $message }}</span>
