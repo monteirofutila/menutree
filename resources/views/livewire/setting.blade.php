@@ -7,10 +7,10 @@
             <div class="max-w-xl mx-auto space-y-7">
                 <div class="w-full">
                     <div class="space-y-20">
-                        <livewire:components.profile-photo />
-                        <livewire:components.profile-information />
-                        <livewire:components.update-password />
-                        <livewire:components.delete-account />
+                        <livewire:components.profile-photo :user="$user" />
+                        <livewire:components.profile-information :user="$user" />
+                        <livewire:components.update-password :user="$user" />
+                        <livewire:components.delete-account :user="$user" />
                     </div>
                 </div>
             </div>

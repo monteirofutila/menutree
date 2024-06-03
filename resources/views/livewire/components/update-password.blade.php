@@ -1,10 +1,9 @@
 <div>
     {{-- The best athlete wants his opponent at his best. --}}
     <div class="max-w-full mb-6">
-        <h2 class="text-lg font-semibold">Update Password</h2>
-        <p class="mt-2 text-concrete text-sm">Lorem ipsum, dolor sit amet consectetur adipisicing
-            elit. Et culpa minima
-            ipsum incidunt</p>
+        <h2 class="text-lg font-semibold">Atualizar senha</h2>
+        <p class="mt-2 text-concrete text-sm">Certifique-se de que sua conta esteja usando uma senha longa e aleatória
+            para permanecer segura.</p>
     </div>
     <form wire:submit="register">
         <div class="w-full mb-2">

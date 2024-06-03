@@ -2,7 +2,8 @@
 <dialog wire:ignore.self id="category" class="modal" role="dialog">
     <div class="modal-box w-11/12 max-w-4xl">
         <form method="dialog" class="modal-backdrop">
-            <button class="btn btn-sm btn-circle bg-white text-sm absolute right-2 top-2">✕</button>
+            <button wire:click="$dispatch('category-close-modal')"
+                class="btn btn-sm btn-circle bg-white text-sm absolute right-2 top-2">✕</button>
         </form>
         <div class="mt-10">
             <div class="mb-10 w-full">

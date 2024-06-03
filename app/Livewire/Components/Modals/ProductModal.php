@@ -20,7 +20,7 @@ class ProductModal extends Component
     #[Validate('required')]
     public string $name;
     #[Validate('nullable')]
-    public string $description;
+    public ?string $description = null;
     #[Validate('required|numeric')]
     public float $price;
     #[Validate('required|boolean')]

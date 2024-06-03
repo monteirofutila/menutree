@@ -13,14 +13,28 @@
                                     <div class="grow flex flex-col gap-1 xl:flex-row xl:justify-between">
                                         <p>
                                             <span class="font-semibold">🔥 Seu Menutree está no ar: </span>
-                                            <a class="underline" href="https://menutr.ee/{{ auth()->user()->username }}"
+                                            <a class="underline" href="{{ route('profile', auth()->user()->username) }}"
                                                 target="_blank">menutr.ee/{{ auth()->user()->username }}</a>
                                         </p>
                                     </div>
-                                    <div>
+                                    <div class="flex items-center gap-3">
                                         <button
                                             class="btn bg-white px-md rounded-full outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-black antialiased text-black md:px-8">
                                             <span class="text-base">Copie o URL do Menutree</span>
+                                        </button>
+                                        <button
+                                            class="flex size-10 items-center justify-center rounded-lg bg-white text-black transition duration-150 ease-in-out ">
+                                            <span class="sr-only">See QR Code</span>
+
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="1.5" stroke="currentColor" class="size-5">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M3.75 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0 1 3.75 9.375v-4.5ZM3.75 14.625c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5a1.125 1.125 0 0 1-1.125-1.125v-4.5ZM13.5 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0 1 13.5 9.375v-4.5Z">
+                                                </path>
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M6.75 6.75h.75v.75h-.75v-.75ZM6.75 16.5h.75v.75h-.75v-.75ZM16.5 6.75h.75v.75h-.75v-.75ZM13.5 13.5h.75v.75h-.75v-.75ZM13.5 19.5h.75v.75h-.75v-.75ZM19.5 13.5h.75v.75h-.75v-.75ZM19.5 19.5h.75v.75h-.75v-.75ZM16.5 16.5h.75v.75h-.75v-.75Z">
+                                                </path>
+                                            </svg>
                                         </button>
                                     </div>
                                 </div>

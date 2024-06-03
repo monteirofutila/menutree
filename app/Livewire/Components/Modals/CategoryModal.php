@@ -30,7 +30,6 @@ class CategoryModal extends Component
 
         $this->dispatch('refresh-home');
         $this->dispatch('category-close-modal');
-        $this->reset();
     }
 
     public function store()
@@ -44,6 +43,12 @@ class CategoryModal extends Component
     public function refreshCategoryModal()
     {
         $this->category = Category::findOrfail($this->category->id);
+    }
+
+    #[On('category-close-modal')]
+    public function categoryCloseModal()
+    {
+        $this->reset();
     }
 
     #[On('category-edit')]

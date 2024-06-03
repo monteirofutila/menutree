@@ -2,12 +2,10 @@
     {{-- Care about people's approval and you will be their prisoner. --}}
 
     <div class="max-w-full mb-6">
-        <h2 class="text-lg font-semibold">Profile Information</h2>
-        <p class="mt-2 text-concrete text-sm">Lorem ipsum, dolor sit amet consectetur adipisicing
-            elit. Et culpa minima
-            ipsum incidunt</p>
+        <h2 class="text-lg font-semibold">Informação do Perfil</h2>
+        <p class="mt-2 text-concrete text-sm">Atualize as informações de perfil e endereço de e-mail da sua conta.</p>
     </div>
-    <form wire:submit="register">
+    <form wire:submit="update">
         <div class="w-full mb-2">
             <input type="text" placeholder="Nome" wire:model="name" class="input input-bordered w-full" />
             <div>

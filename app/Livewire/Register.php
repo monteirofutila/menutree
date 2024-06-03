@@ -29,7 +29,8 @@ class Register extends Component
         session()->regenerate();
 
         $this->reset();
-        $this->redirect('home');
+        $this->redirect('/');
+
     }
     public function render()
     {

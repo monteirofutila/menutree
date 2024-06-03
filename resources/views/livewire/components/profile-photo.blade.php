@@ -1,18 +1,21 @@
 <div>
     {{-- If you look to others for fulfillment, you will never truly be fulfilled. --}}
     <div class="max-w-full mb-6">
-        <h2 class="text-lg font-semibold">Profile Photo</h2>
-        <p class="mt-2 text-concrete text-sm">Lorem ipsum, dolor sit amet consectetur adipisicing
-            elit. Et culpa minima
-            ipsum incidunt</p>
+        <h2 class="text-lg font-semibold">Foto de perfil</h2>
+        <p class="mt-2 text-concrete text-sm">Carregue uma foto de perfil para personalizar sua conta.</p>
     </div>
 
     <div
         class="relative mb-4 flex aspect-[1/1.2] w-28 h-28 cursor-pointer items-center rounded-full bg-marble hover:ring-2 hover:ring-sand">
         <button wire:click="$dispatch('image-preview')" class="relative flex h-full w-full grow items-center">
             <input id="uploadInput" wire:model="photo" type="file" class="hidden" accept="image/*" />
-            <img class="absolute inset-x-0 inset-y-0 h-full w-full rounded-full object-cover"
-                src="http://placehold.it/100x100" alt="">
+            @if ($photo)
+                <img class="absolute inset-x-0 inset-y-0 h-full w-full rounded-full object-cover"
+                    src="{{ $photo->temporaryUrl() }}">
+            @else
+                <img class="absolute inset-x-0 inset-y-0 h-full w-full rounded-full object-cover"
+                    src="{{ $photo_url ? asset('storage/' . $photo_url) : 'http://placehold.it/100x100' }}">
+            @endif
         </button>
         <div
             class="pointer-events-none absolute bottom-2 right-2 z-10 flex h-10 w-10 items-center justify-center rounded-full border border-solid bg-black/30 text-white backdrop-blur-sm">
@@ -26,7 +29,17 @@
         </div>
     </div>
     <div>
-        <button
+        <button wire:click="update"
             class="btn bg-white text-amber-600 border-2 border-amber-600 outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-black antialiased">Upload</button>
     </div>
 </div>
+
+@push('js')
+    <script>
+        document.addEventListener('livewire:initialized', () => {
+            Livewire.on('image-preview', (event) => {
+                document.getElementById('uploadInput').click()
+            });
+        });
+    </script>
+@endpush
