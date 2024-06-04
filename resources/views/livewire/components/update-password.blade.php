@@ -5,11 +5,12 @@
         <p class="mt-2 text-concrete text-sm">Certifique-se de que sua conta esteja usando uma senha longa e aleatória
             para permanecer segura.</p>
     </div>
-    <form wire:submit="register">
+    <form wire:submit="update">
         <div class="w-full mb-2">
-            <input type="text" placeholder="Senha atual" wire:model="password_old" class="input input-bordered w-full" />
+            <input type="text" placeholder="Senha atual" wire:model="current_password"
+                class="input input-bordered w-full" />
             <div>
-                @error('password_old')
+                @error('current_password')
                     <span class="error">{{ $message }}</span>
                 @enderror
             </div>
@@ -32,8 +33,8 @@
             </div>
         </div>
         <div class="w-full">
-            <button
-                class="btn bg-white text-amber-600 border-2 border-amber-600 outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-black antialiased">Salvar</button>
+            <button type="submit"
+                class="btn bg-white rounded-full text-amber-600 border-2 border-amber-600 outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-black antialiased">Salvar</button>
         </div>
     </form>
 </div>

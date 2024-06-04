@@ -35,7 +35,7 @@
                             <h2 class="font-semibold text-black text-md leading-heading">Produtos
                                 ({{ $category->products->count() }})</h2>
                         </div>
-                        <div class="grid grid-cols-4 gap-4 py-3">
+                        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 py-3">
                             @foreach ($category->products as $product)
                                 <livewire:components.cards.product-card :key="$product->id" :product="$product" />
                             @endforeach

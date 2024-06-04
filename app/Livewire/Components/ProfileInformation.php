@@ -46,7 +46,7 @@ class ProfileInformation extends Component
             $this->only('name', 'username', 'email', 'bio')
         );
 
-        $this->render();
+        $this->resetExcept('user');
         $this->refresh();
 
     }

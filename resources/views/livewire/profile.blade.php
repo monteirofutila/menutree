@@ -23,7 +23,7 @@
                         <div class="flex overflow-x-auto space-x-5 py-4">
 
                             @foreach ($category->products as $product)
-                                <div class="card flex-none max-w-60 bg-white shadow-lg overflow-hidden"
+                                <div class="card flex-none w-full max-w-56 bg-white shadow-lg overflow-hidden"
                                     onclick="modal.showModal()">
                                     <img class="object-cover object-center w-full h-48 mx-auto"
                                         src="{{ asset('storage/' . $product->photo_url) }}" alt="avatar">

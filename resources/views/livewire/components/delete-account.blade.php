@@ -8,7 +8,7 @@
     </div>
     <div>
         <button
-            class="btn bg-white text-red-500 border-2 border-red-500 outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-black antialiased">Deletar
+            class="btn rounded-full bg-white text-red-500 border-2 border-red-500 outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-black antialiased">Deletar
             conta</button>
     </div>
 </div>

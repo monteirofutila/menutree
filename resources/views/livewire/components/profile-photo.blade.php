@@ -30,7 +30,7 @@
     </div>
     <div>
         <button wire:click="update"
-            class="btn bg-white text-amber-600 border-2 border-amber-600 outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-black antialiased">Upload</button>
+            class="btn rounded-full bg-white text-amber-600 border-2 border-amber-600 outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-black antialiased">Upload</button>
     </div>
 </div>
 

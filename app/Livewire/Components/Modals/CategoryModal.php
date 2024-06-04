@@ -52,7 +52,7 @@ class CategoryModal extends Component
     }
 
     #[On('category-edit')]
-    public function edit($category_id)
+    public function edit($category_id = null)
     {
         $this->category = Category::findOrfail($category_id);
         $this->name = $this->category->name;

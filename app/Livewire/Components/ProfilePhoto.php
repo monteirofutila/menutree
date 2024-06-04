@@ -15,7 +15,7 @@ class ProfilePhoto extends Component
 
     #[Validate('required|image|max:2048')] // 2MB Max
     public $photo;
-    public $photo_url = null;
+    public string $photo_url;
 
     public function mount($user)
     {
@@ -44,7 +44,7 @@ class ProfilePhoto extends Component
             $this->only('photo_url')
         );
 
-        $this->render();
+        $this->resetExcept('user');
         $this->refresh();
     }
 
