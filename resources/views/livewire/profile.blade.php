@@ -17,25 +17,29 @@
                 @foreach ($user->categories as $category)
                     <div class="w-full">
                         <div class="max-w-full">
-                            <h2 class="text-2xl font-medium text-black">{{ $category->name }}</h2>
+                            <h2 class="text-xl font-medium text-black">{{ $category->name }}</h2>
                             {{-- <p class="text-sm text-black">Software Engineer at MTDHOUSE</p> --}}
                         </div>
                         <div class="flex overflow-x-auto space-x-5 py-4">
 
                             @foreach ($category->products as $product)
-                                <div class="card flex-none w-full max-w-56 bg-white shadow-lg overflow-hidden"
+                                <div class="card flex-none w-full max-w-56 bg-white shadow-lg overflow-hidden relative"
                                     onclick="modal.showModal()">
-                                    <img class="object-cover object-center w-full h-48 mx-auto"
-                                        src="{{ asset('storage/' . $product->photo_url) }}" alt="avatar">
-                                    <div class="p-3">
-                                        <h1 class="text-base font-medium text-black">{{ $product->name }}</h1>
-
-                                        <p class="py-2 text-xs text-gray-700">{{ $product->description }}</p>
-
-                                        <div class="flex items-center justify-end text-black">
-                                            <h1 class="text-sm text-black font-medium">{{ $product->price }} Kz</h1>
+                                    <div class="h-full">
+                                        <img class="object-cover object-center w-full h-48 mx-auto"
+                                            src="{{ asset('storage/' . $product->photo_url) }}" alt="avatar">
+                                        <div class="p-3">
+                                            <h1 class="text-base font-medium text-black leading-heading">
+                                                {{ $product->name }}</h1>
+                                            <p class="mt-2 text-sm text-concrete text-gray-700">
+                                                {{ $product->description }}</p>
                                         </div>
                                     </div>
+                                    <div class="flex items-center p-3 self-end justify-end w-full">
+                                        <h1 class="text-sm font-medium text-black">{{ $product->price }} Kz
+                                        </h1>
+                                    </div>
+
                                 </div>
                             @endforeach
                         </div>
