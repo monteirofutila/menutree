@@ -34,7 +34,8 @@
         </div>
         <div class="w-full">
             <button type="submit"
-                class="btn bg-white rounded-full text-amber-600 border-2 border-amber-600 outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-black antialiased">Salvar</button>
+                class="btn bg-white rounded-full text-amber-600 border-2 border-amber-600 outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-black antialiased">
+                Salvar</button>
         </div>
     </form>
 </div>

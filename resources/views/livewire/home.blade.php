@@ -22,7 +22,7 @@
                                             class="btn bg-white px-md rounded-full outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-black antialiased text-black md:px-8">
                                             <span class="text-base">Copie o URL do Menutree</span>
                                         </button>
-                                        <button
+                                        <button onclick="qrcode.showModal()"
                                             class="flex size-10 items-center justify-center rounded-lg bg-white text-black transition duration-150 ease-in-out ">
                                             <span class="sr-only">See QR Code</span>
 
@@ -85,6 +85,7 @@
     <!-- You can open the modal using ID.showModal() method -->
     <livewire:components.modals.category-modal key="{{ $categories->count() }}" />
     <livewire:components.modals.product-modal key="{{ $products->count() }}" />
+    <livewire:components.modals.qr-code-modal />
 
     @push('js')
         <script>
