@@ -1,5 +1,10 @@
 <div>
     {{-- Care about people's approval and you will be their prisoner. --}}
+
+    @auth
+        <x-layouts.navigation />
+    @endauth
+
     <main class="container px-5 mx-auto bg-white">
         <div class="w-full py-11 space-y-10">
             <div class="px-5 text-center w-full md:max-w-md mx-auto">
