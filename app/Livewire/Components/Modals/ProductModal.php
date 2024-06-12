@@ -2,8 +2,9 @@
 
 namespace App\Livewire\Components\Modals;
 
-use App\Models\Category;
-use App\Models\Product;
+use App\Services\AuthService;
+use App\Services\CategoryService;
+use App\Services\ProductService;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -13,6 +14,9 @@ class ProductModal extends Component
 {
     use WithFileUploads;
 
+    protected ProductService $productService;
+    protected CategoryService $categoryService;
+    protected AuthService $authService;
     public $category;
 
     #[Validate('required|image|max:2048')] // 2MB Max
@@ -28,6 +32,12 @@ class ProductModal extends Component
     #[Validate('required|exists:categories,id')]
     public $category_id;
 
+    public function boot(ProductService $productService, CategoryService $categoryService)
+    {
+        $this->productService = $productService;
+        $this->categoryService = $categoryService;
+    }
+
     public function store()
     {
         $this->validate();
@@ -35,7 +45,7 @@ class ProductModal extends Component
         $data = $this->only('category_id', 'name', 'description', 'price', 'is_stock');
         $data['photo_url'] = $this->photo ? $this->photo->store('products') : null;
 
-        Product::create($data);
+        $this->productService->new($data);
 
         if ($this->category) {
             $this->dispatch('refresh-category-modal');
@@ -48,8 +58,10 @@ class ProductModal extends Component
     #[On('product-show-modal')]
     public function showModal($category_id = null)
     {
-        $this->category = Category::find($category_id);
-        $this->category_id = $this->category?->id;
+        if (!is_null($category_id)) {
+            $this->category = $this->categoryService->findById($category_id);
+            $this->category_id = $this->category?->id;
+        }
     }
     public function render()
     {

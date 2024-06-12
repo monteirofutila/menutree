@@ -8,8 +8,8 @@ use Livewire\Component;
 class Profile extends Component
 {
     public $user;
-
     protected UserService $userService;
+
     public function mount(string $username)
     {
         $this->user = $this->userService->findByUserName($username);

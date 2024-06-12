@@ -10,9 +10,9 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
     /**
      * Create a new class instance.
      */
-    public function __construct(protected User $user)
+    public function __construct(User $model)
     {
-        parent::__construct($user);
+        parent::__construct($model);
     }
 
     public function findByUserName(string $username): ?object

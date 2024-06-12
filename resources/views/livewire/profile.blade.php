@@ -1,6 +1,5 @@
 <div>
     {{-- Care about people's approval and you will be their prisoner. --}}
-
     @auth
         <x-layouts.navigation />
     @endauth
@@ -16,35 +15,36 @@
                 <div class="mx-3 max-w-full flex items-center justify-center">
                     <h2 class="text-2xl font-bold text-black">{{ $user->name }}</h2>
                 </div>
+                <a class="text-slate-400" href="{{ route('profile', $user->username) }}" wire:navigate="">
+                    <p class="text-base"> {{ '@' . $user->username }}</p>
+                </a>
                 <p class="text-base text-black mt-[2px]">{{ $user->bio }}</p>
             </div>
             <div class="max-w-5xl mx-auto space-y-7">
                 @foreach ($user->categories as $category)
                     <div class="w-full">
                         <div class="max-w-full">
-                            <h2 class="text-xl font-medium text-black">{{ $category->name }}</h2>
+                            <h2 class="text-xl text-black">{{ $category->name }}</h2>
                             {{-- <p class="text-sm text-black">Software Engineer at MTDHOUSE</p> --}}
                         </div>
                         <div class="flex overflow-x-auto space-x-5 py-4">
-
-                            @foreach ($category->products as $product)
-                                <div class="card flex-none w-full max-w-56 bg-white shadow-lg overflow-hidden relative"
-                                    onclick="modal.showModal()">
+                            @foreach ($category->products as $value)
+                                <div class="card flex-none w-full max-w-48 bg-white shadow-lg overflow-hidden relative"
+                                    wire:click="$dispatch('show-details', { product_id: '{{ $value->id }}' })">
                                     <div class="h-full">
                                         <img class="object-cover object-center w-full h-48 mx-auto"
-                                            src="{{ asset('storage/' . $product->photo_url) }}" alt="avatar">
+                                            src="{{ asset('storage/' . $value->photo_url) }}" alt="avatar">
                                         <div class="p-3">
                                             <h1 class="text-base font-medium text-black leading-heading">
-                                                {{ $product->name }}</h1>
+                                                {{ $value->name }}</h1>
                                             <p class="mt-2 text-sm text-concrete text-gray-700">
-                                                {{ $product->description }}</p>
+                                                {{ $value->description }}</p>
                                         </div>
                                     </div>
                                     <div class="flex items-center p-3 self-end justify-end w-full">
-                                        <h1 class="text-sm font-medium text-black">{{ $product->price }} Kz
+                                        <h1 class="text-sm font-medium text-black">{{ $value->price }} Kz
                                         </h1>
                                     </div>
-
                                 </div>
                             @endforeach
                         </div>
@@ -55,27 +55,15 @@
     </main>
 
     <!-- You can open the modal using ID.showModal() method -->
-    <dialog id="modal" class="modal" role="dialog">
-        <div class="modal-box p-0 max-w-80 bg-white">
-            <form method="dialog" class="modal-backdrop">
-                <button class="btn btn-xs btn-circle bg-white text-xs absolute right-2 top-2">✕</button>
-            </form>
-            <img class="object-cover object-center h-80 w-full"
-                src="https://i.pinimg.com/736x/b7/1c/d7/b71cd74d32541264c0a6a228dd658c82.jpg" alt="avatar">
-            <div class="p-5">
-                <h1 class="text-base font-medium text-black">Pizza with Arugula and
-                    Prosciutto</h1>
-                <div class="py-1">
-                    <span class="badge bg-gray-100 border-none text-green-700">Badge</span>
-                </div>
-                <p class="py-2 text-sm text-gray-700">Full Stack maker & UI / UX
-                    Designer ,
-                    love hip hop music...</p>
+    <livewire:components.profile.modals.product-detail-modal />
 
-                <div class="flex items-center justify-end text-black">
-                    <h1 class="text-base text-black font-medium">4.000,00Kz</h1>
-                </div>
-            </div>
-        </div>
-    </dialog>
+    @push('js')
+        <script>
+            document.addEventListener('livewire:initialized', () => {
+                Livewire.on('show-details', (event) => {
+                    document.getElementById('productDetails').showModal()
+                });
+            });
+        </script>
+    @endpush
 </div>

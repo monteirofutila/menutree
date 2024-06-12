@@ -8,10 +8,10 @@
         <div class="mt-10">
             <div class="mb-10 w-full">
                 <input type="text" placeholder="Nome da categoria" wire:model="name"
-                    class="input input-bordered w-full" />
+                    class="input input-bordered w-full bg-white text-black focus:outline-none focus:border-black focus:ring-black focus:ring-1" />
                 <div>
                     @error('name')
-                        <span class="error">{{ $message }}</span>
+                        <span class="error text-red-600">{{ $message }}</span>
                     @enderror
                 </div>
             </div>
@@ -81,7 +81,7 @@
 
                     <div class="w-full">
                         <button
-                            class="btn bg-amber-600 px-md rounded-full outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-black antialiased text-white md:!w-auto md:px-8"
+                            class="btn bg-[#ffbc0d] hover:bg-yellow-600 px-md rounded-full outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-black antialiased text-white md:!w-auto md:px-8"
                             wire:click="save">
                             <span class="text-base">Salvar</span>
                         </button>

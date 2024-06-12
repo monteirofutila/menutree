@@ -15,7 +15,7 @@ class ProfilePhoto extends Component
 
     #[Validate('required|image|max:2048')] // 2MB Max
     public $photo;
-    public string $photo_url;
+    public ?string $photo_url;
 
     public function mount($user)
     {

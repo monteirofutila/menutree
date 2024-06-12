@@ -3,14 +3,15 @@
 namespace App\Repositories;
 
 use App\Interfaces\CategoryRepositoryInterface;
+use App\Models\Category;
 
 class CategoryRepository extends AbstractRepository implements CategoryRepositoryInterface
 {
     /**
      * Create a new class instance.
      */
-    public function __construct()
+    public function __construct(Category $model)
     {
-        //
+        parent::__construct($model);
     }
 }

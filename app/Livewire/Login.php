@@ -2,21 +2,29 @@
 
 namespace App\Livewire;
 
-use Illuminate\Support\Facades\Auth;
+use App\Services\AuthService;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
 class Login extends Component
 {
+    protected AuthService $authService;
+
     #[Validate('required|email')]
     public $email;
     #[Validate('required|string')]
     public $password;
 
+    public function boot(AuthService $authService)
+    {
+        $this->authService = $authService;
+    }
+
     public function login()
     {
         $this->validate();
-        $login = Auth::attempt($this->only('email', 'password'));
+
+        $login = $this->authService->login($this->email, $this->password);
 
         if (!$login) {
             return;

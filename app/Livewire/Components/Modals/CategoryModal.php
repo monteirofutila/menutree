@@ -2,14 +2,16 @@
 
 namespace App\Livewire\Components\Modals;
 
-use App\Models\Category;
-use App\Models\Product;
+use App\Services\CategoryService;
+use App\Services\ProductService;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
 class CategoryModal extends Component
 {
+    protected ProductService $productService;
+    protected CategoryService $categoryService;
     public $category;
     public string $product_id;
 
@@ -18,6 +20,11 @@ class CategoryModal extends Component
     #[Validate('nullable|string')]
     public string $description = '';
 
+    public function boot(ProductService $productService, CategoryService $categoryService)
+    {
+        $this->productService = $productService;
+        $this->categoryService = $categoryService;
+    }
     public function save()
     {
         $this->validate();
@@ -36,13 +43,13 @@ class CategoryModal extends Component
     {
         $data = $this->only('name', 'description');
         $data['user_id'] = auth()->user()->id;
-        Category::create($data);
+        $this->categoryService->new($data);
     }
 
     #[On('refresh-category-modal')]
     public function refreshCategoryModal()
     {
-        $this->category = Category::findOrfail($this->category->id);
+        $this->category = $this->categoryService->findById($this->category->id);
     }
 
     #[On('category-close-modal')]
@@ -54,20 +61,20 @@ class CategoryModal extends Component
     #[On('category-edit')]
     public function edit($category_id = null)
     {
-        $this->category = Category::findOrfail($category_id);
+        $this->category = $this->categoryService->findById($category_id);
         $this->name = $this->category->name;
     }
 
     public function update($category_id)
     {
         $data = $this->only('name', 'description');
-        Category::find($category_id)->update($data);
+        $this->categoryService->update($category_id, $data);
     }
 
     #[On('category-destroy')]
     public function destroy($category_id = null)
     {
-        Category::find($category_id)->delete();
+        $this->categoryService->delete($category_id);
         $this->dispatch('refresh-home');
         $this->reset();
     }
@@ -81,7 +88,7 @@ class CategoryModal extends Component
     #[On('product-destroy')]
     public function destroyProduct()
     {
-        Product::find($this->product_id)->delete();
+        $this->productService->delete($this->product_id);
         $this->refreshCategoryModal();
         $this->dispatch('refresh-home');
         $this->reset('product_id');

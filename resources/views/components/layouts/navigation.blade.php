@@ -5,7 +5,8 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" />
             </svg>
         </div>
-        <a href="{{ route('home') }}" class="font-semibold text-lg md:text-xl">Menutree</a>
+        <a href="{{ route('home') }}"
+            class="text-black text-[24px] font-extrabold leading-heading tracking-[-1px]">oMenu</a>
     </div>
     <div class="navbar-end">
         <ul class="menu menu-horizontal hidden lg:flex rounded-box">
@@ -15,7 +16,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('profile', auth()->user()->username) }}">
+                <a href="{{ route('profile', auth()->user()->username) }}" wire:navigate>
                     <span class="text-base">Perfil</span>
                 </a>
             </li>
@@ -32,7 +33,7 @@
             <ul tabindex="0" class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
                 <li><a href="{{ route('setting') }}" wire:navigate>Configurações</a></li>
                 <li>
-                    <form action="{{ route('logout') }}" method="post">
+                    <form action="{{ route('logout') }}" method="POST">
                         @csrf
                         <button type="submit"><a>Sair</a></button>
                     </form>

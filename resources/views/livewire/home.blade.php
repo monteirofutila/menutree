@@ -7,7 +7,7 @@
             <div class="max-w-4xl mx-auto space-y-7">
                 <div class="w-full">
                     <div class="max-w-full">
-                        <div class="py-3 px-4 text-md shadow-inner-bottom-light rounded-3xl md:flex-row bg-amber-100">
+                        <div class="py-3 px-4 text-md shadow-inner-bottom-light rounded-3xl md:flex-row bg-yellow-100">
                             <div class="flex gap-4 xl:items-center">
                                 <div class="flex-1 flex flex-col gap-4 md:flex-row items-center">
                                     <div class="grow flex flex-col gap-1 xl:flex-row xl:justify-between">
@@ -22,32 +22,18 @@
                                             class="btn bg-white px-md rounded-full outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-black antialiased text-black md:px-8">
                                             <span class="text-base">Copie o URL do Menutree</span>
                                         </button>
-                                        <button onclick="qrcode.showModal()"
-                                            class="flex size-10 items-center justify-center rounded-lg bg-white text-black transition duration-150 ease-in-out ">
-                                            <span class="sr-only">See QR Code</span>
-
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="1.5" stroke="currentColor" class="size-5">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M3.75 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0 1 3.75 9.375v-4.5ZM3.75 14.625c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5a1.125 1.125 0 0 1-1.125-1.125v-4.5ZM13.5 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0 1 13.5 9.375v-4.5Z">
-                                                </path>
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M6.75 6.75h.75v.75h-.75v-.75ZM6.75 16.5h.75v.75h-.75v-.75ZM16.5 6.75h.75v.75h-.75v-.75ZM13.5 13.5h.75v.75h-.75v-.75ZM13.5 19.5h.75v.75h-.75v-.75ZM19.5 13.5h.75v.75h-.75v-.75ZM19.5 19.5h.75v.75h-.75v-.75ZM16.5 16.5h.75v.75h-.75v-.75Z">
-                                                </path>
-                                            </svg>
-                                        </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="my-6 justify-between gap-2 xs:flex md:mt-10">
+                    <div class="my-6 flex justify-between gap-2 xs:flex md:mt-10">
                         <div class="flex gap-2 mb-2">
                             @if ($categories->count())
                                 <div class="xs:mb-0 md:!w-auto">
                                     <button
-                                        class="btn bg-amber-600 px-md rounded-full outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-black antialiased text-white md:!w-auto md:px-8"
+                                        class="btn bg-[#ffbc0d] hover:bg-yellow-600 px-md rounded-full outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-black antialiased text-white md:!w-auto md:px-8"
                                         wire:click="$dispatch('product-show-modal')">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 16 16"
                                             fill="none" stroke="currentColor">
@@ -70,6 +56,22 @@
                                     <span class="text-base">Categorias</span>
                                 </button>
                             </div>
+                        </div>
+                        <div>
+                            <button onclick="qrcode.showModal()"
+                                class="btn bg-white flex items-center justify-center rounded-xl text-black transition duration-150 ease-in-out ">
+                                <span class="sr-only">See QR Code</span>
+
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="size-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M3.75 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0 1 3.75 9.375v-4.5ZM3.75 14.625c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5a1.125 1.125 0 0 1-1.125-1.125v-4.5ZM13.5 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0 1 13.5 9.375v-4.5Z">
+                                    </path>
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M6.75 6.75h.75v.75h-.75v-.75ZM6.75 16.5h.75v.75h-.75v-.75ZM16.5 6.75h.75v.75h-.75v-.75ZM13.5 13.5h.75v.75h-.75v-.75ZM13.5 19.5h.75v.75h-.75v-.75ZM19.5 13.5h.75v.75h-.75v-.75ZM19.5 19.5h.75v.75h-.75v-.75ZM16.5 16.5h.75v.75h-.75v-.75Z">
+                                    </path>
+                                </svg>
+                            </button>
                         </div>
                     </div>
                     <div class="space-y-5">

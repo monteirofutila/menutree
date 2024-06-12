@@ -16,7 +16,7 @@
                         <span class="text-base">Cancelar</span>
                     </button>
                     <button wire:click="$dispatch('category-destroy', {category_id: '{{ $category_id }}'})"
-                        class="btn w-1/2 bg-red-700 px-md rounded-full outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-black antialiased text-white">
+                        class="btn w-1/2 bg-red-600 hover:bg-red-900 px-md rounded-full outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-black antialiased text-white">
                         <span class="text-base">Excluir categoria</span>
                     </button>
                 </div>

@@ -2,8 +2,6 @@
 
 namespace App\Services;
 
-use Illuminate\Support\Facades\Auth;
-
 class AuthService
 {
     /**
@@ -12,7 +10,10 @@ class AuthService
 
     public function login(string $email, string $password): bool
     {
-        return auth()->attempt([$email, $password]);
+        return auth()->attempt([
+            'email' => $email,
+            'password' => $password
+        ]);
     }
     public function me(): ?object
     {

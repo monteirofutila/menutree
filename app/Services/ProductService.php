@@ -20,7 +20,6 @@ class ProductService
     public function getAll(): ?object
     {
         return $this->repository->getAll();
-
     }
     public function new(array $data): ?object
     {

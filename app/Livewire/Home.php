@@ -10,7 +10,6 @@ use Livewire\Component;
 class Home extends Component
 {
     public $categories;
-
     protected AuthService $authService;
     public $products;
 

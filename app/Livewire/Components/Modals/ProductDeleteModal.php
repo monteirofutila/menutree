@@ -2,7 +2,6 @@
 
 namespace App\Livewire\Components\Modals;
 
-use Livewire\Attributes\Reactive;
 use Livewire\Component;
 
 class ProductDeleteModal extends Component

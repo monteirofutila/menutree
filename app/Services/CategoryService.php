@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Services;
+namespace App\Services;
 
 use App\Repositories\CategoryRepository;
 
@@ -20,7 +20,6 @@ class CategoryService
     public function getAll(): ?object
     {
         return $this->repository->getAll();
-
     }
     public function new(array $data): ?object
     {

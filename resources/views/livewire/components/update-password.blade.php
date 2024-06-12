@@ -8,33 +8,34 @@
     <form wire:submit="update">
         <div class="w-full mb-2">
             <input type="text" placeholder="Senha atual" wire:model="current_password"
-                class="input input-bordered w-full" />
+                class="input input-bordered w-full bg-white text-black focus:outline-none focus:border-black focus:ring-black focus:ring-1" />
             <div>
                 @error('current_password')
-                    <span class="error">{{ $message }}</span>
+                    <span class="error text-red-600">{{ $message }}</span>
                 @enderror
             </div>
         </div>
         <div class="w-full mb-2">
-            <input type="password" placeholder="Nova senha" wire:model="password" class="input input-bordered w-full" />
+            <input type="password" placeholder="Nova senha" wire:model="password"
+                class="input input-bordered w-full bg-white text-black focus:outline-none focus:border-black focus:ring-black focus:ring-1" />
             <div>
                 @error('password')
-                    <span class="error">{{ $message }}</span>
+                    <span class="error text-red-600">{{ $message }}</span>
                 @enderror
             </div>
         </div>
         <div class="w-full mb-6">
             <input type="password" placeholder="Confirme sua senha" wire:model="password_confirmation"
-                class="input input-bordered w-full" />
+                class="input input-bordered w-full bg-white text-black focus:outline-none focus:border-black focus:ring-black focus:ring-1" />
             <div>
                 @error('password_confirmation')
-                    <span class="error">{{ $message }}</span>
+                    <span class="error text-red-600">{{ $message }}</span>
                 @enderror
             </div>
         </div>
         <div class="w-full">
             <button type="submit"
-                class="btn bg-white rounded-full text-amber-600 border-2 border-amber-600 outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-black antialiased">
+                class="btn bg-white hover:bg-amber-100 text-[#ffbc0d] border-2 border-[#ffbc0d] hover:border-[#ffbc0d] rounded-full px-md outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-black antialiased md:!w-auto md:px-8">
                 Salvar</button>
         </div>
     </form>

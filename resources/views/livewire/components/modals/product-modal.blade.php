@@ -8,7 +8,7 @@
             <div class="pt-4">
                 <div class="text-center">
                     @error('photo')
-                        <span class="error">{{ $message }}</span>
+                        <span class="error text-red-600">{{ $message }}</span>
                     @enderror
                 </div>
                 <div
@@ -35,28 +35,28 @@
                     <div class="space-y-2">
                         <div class="mb-2">
                             <input type="text" placeholder="Nome do produto" wire:model="name"
-                                class="input input-bordered w-full" />
+                                class="input input-bordered w-full bg-white text-black focus:outline-none focus:border-black focus:ring-black focus:ring-1" />
                             <div>
                                 @error('name')
-                                    <span class="error">{{ $message }}</span>
+                                    <span class="error text-red-600">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
                         <div class="mb-2">
                             <input type="text" placeholder="Descrição" wire:model="description"
-                                class="input input-bordered w-full" />
+                                class="input input-bordered w-full bg-white text-black focus:outline-none focus:border-black focus:ring-black focus:ring-1" />
                             <div>
                                 @error('description')
-                                    <span class="error">{{ $message }}</span>
+                                    <span class="error text-red-600">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
                         <div class="mb-0">
                             <input type="number" wire:model.number="price" placeholder="Preço"
-                                class="input input-bordered">
+                                class="input input-bordered w-full bg-white text-black focus:outline-none focus:border-black focus:ring-black focus:ring-1">
                             <div>
                                 @error('price')
-                                    <span class="error">{{ $message }}</span>
+                                    <span class="error text-red-600">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
@@ -66,7 +66,7 @@
                         <span class="text-black ml-md self-center">Está em estoque?</span>
                         <div>
                             @error('is_stock')
-                                <span class="error">{{ $message }}</span>
+                                <span class="error text-red-600">{{ $message }}</span>
                             @enderror
                         </div>
                     </label>
@@ -83,7 +83,7 @@
                             @endforeach
                             <div>
                                 @error('category_id')
-                                    <span class="error">{{ $message }}</span>
+                                    <span class="error text-red-600">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
@@ -94,12 +94,11 @@
                 <div class="mt-4 flex gap-2">
                     <div class="w-full">
                         <button
-                            class="btn btn-block bg-amber-600 w-full px-md rounded-full outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-black antialiased text-white"
+                            class="btn btn-block bg-[#ffbc0d] hover:bg-yellow-600 w-full px-md rounded-full outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-black antialiased text-white md:!w-auto md:px-8"
                             wire:click="store">
                             <span class="text-base">Adicionar produto</span>
                         </button>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -114,11 +113,9 @@
             });
 
             document.addEventListener('livewire:initialized', () => {
-
                 Livewire.on('product-delete-modal', (event) => {
                     document.getElementById('product_delete').showModal()
                 });
-
             });
         </script>
     @endpush
