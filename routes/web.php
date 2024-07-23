@@ -8,8 +8,6 @@ use App\Livewire\Profile;
 use App\Livewire\Setting;
 use Illuminate\Support\Facades\Route;
 
-
-
 require __DIR__ . '/auth.php';
 
 Route::put('/profiles/{id}', [ProfileController::class, 'update'])->name('profile.update')->middleware('auth');
@@ -21,4 +19,3 @@ Route::get('/profile', Setting::class)->name('setting')->middleware('auth');
 Route::get('/login', Login::class)->name('login');
 Route::get('/register', Register::class)->name('register');
 Route::get('/@{username}', Profile::class)->name('profile');
-

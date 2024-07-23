@@ -10,8 +10,7 @@
                     pessoas para o seu Menutree quando digitalizado.</p>
             </div>
             <div class="w-full flex items-center justify-center">
-                <img loading="lazy" src="{{ 'https://qr.eletto.dev/' . route('profile', auth()->user()->username) }}"
-                    class="w-[180px] h-[180px]">
+                {!! QrCode::size(180)->generate(route('profile', auth()->user()->username)) !!}
             </div>
             <div class="w-full flex justify-center items-center">
                 <p class="text-black text-md block truncate">
