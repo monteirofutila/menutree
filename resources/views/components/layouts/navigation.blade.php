@@ -6,7 +6,7 @@
             </svg>
         </div>
         <a href="{{ route('home') }}"
-            class="text-black text-[24px] font-extrabold leading-heading tracking-[-1px]">oMenu</a>
+            class="text-black text-[24px] font-extrabold leading-heading tracking-[-1px]">Menutree</a>
     </div>
     <div class="navbar-end">
         <ul class="menu menu-horizontal hidden lg:flex rounded-box">

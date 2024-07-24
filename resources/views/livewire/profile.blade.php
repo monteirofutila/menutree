@@ -63,6 +63,10 @@
                 Livewire.on('show-details', (event) => {
                     document.getElementById('productDetails').showModal()
                 });
+
+                Livewire.on('close-details', (event) => {
+                    document.getElementById('productDetails').close()
+                });
             });
         </script>
     @endpush

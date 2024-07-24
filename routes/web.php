@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\QrcodeController;
 use App\Livewire\Home;
 use App\Livewire\Login;
 use App\Livewire\Register;
@@ -12,6 +13,7 @@ require __DIR__ . '/auth.php';
 
 Route::put('/profiles/{id}', [ProfileController::class, 'update'])->name('profile.update')->middleware('auth');
 Route::post('/profiles/{id}/upload', [ProfileController::class, 'upload'])->name('profile.upload')->middleware('auth');
+Route::get('/qr-code', [QrcodeController::class, 'show'])->name('qrcode')->middleware('auth');
 
 Route::get('/', Home::class)->name('home')->middleware('auth');
 Route::get('/profile', Setting::class)->name('setting')->middleware('auth');

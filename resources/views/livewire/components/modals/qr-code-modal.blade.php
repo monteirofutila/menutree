@@ -10,7 +10,7 @@
                     pessoas para o seu Menutree quando digitalizado.</p>
             </div>
             <div class="w-full flex items-center justify-center">
-                {!! QrCode::size(180)->generate(route('profile', auth()->user()->username)) !!}
+                <img src="{{ route('qrcode') }}">
             </div>
             <div class="w-full flex justify-center items-center">
                 <p class="text-black text-md block truncate">
